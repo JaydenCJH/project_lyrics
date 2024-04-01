@@ -1,9 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import time
+import random
 
 import pandas as pd
 
+random_sec = random.uniform(1,3)
 
 title_list = []
 likes_list = []
@@ -17,6 +20,7 @@ for i in range(20):
     driver.get(url)
     for i in range(1, 51):
         try:
+            time.sleep(random_sec)
             url2 = "/html/body/div/div[3]/div/div/div[5]/form/div/table/tbody/tr[{}]/td[4]/div/a".format(i)
             element = driver.find_element(By.XPATH, url2)
             element.click()
@@ -24,6 +28,7 @@ for i in range(20):
             likes = driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div/div/div/form/div/div/div[2]/div[3]/button[1]/span[2]")
             singer = driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div/div/div/form/div/div/div[2]/div[1]/div[2]/a/span[1]")
             lyrics = driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div/div/div/div[2]/div[2]/div")
+            print ("{}번째 곡".format(i))
             print ("Title :",title.text)
             #print ("Likes :",likes.text)
             print ("Singer :",singer.text)
