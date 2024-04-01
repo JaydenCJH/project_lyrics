@@ -6,7 +6,7 @@ import random
 
 import pandas as pd
 
-random_sec = random.uniform(1,3)
+random_sec = random.uniform(1,2)
 
 title_list = []
 likes_list = []
@@ -14,21 +14,21 @@ singer_list = []
 lyrics_list = []
 
 driver = webdriver.Chrome()
-for i in range(20):
+for i in range(50):
     i = i * 50 + 1
-    url = "http://www.melon.com/genre/song_list.htm?gnrCode=GN0300#params%5BgnrCode%5D=GN0300&params%5BdtlGnrCode%5D=&params%5BorderBy%5D=NEW&po=pageObj&startIndex={}".format(i)
+    url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100#params%5BgnrCode%5D=GN0100&params%5BdtlGnrCode%5D=&params%5BorderBy%5D=POP&params%5BsteadyYn%5D=N&po=pageObj&startIndex={}".format(i)
     driver.get(url)
-    for i in range(1, 51):
+    for j in range(1, 51):
         try:
             time.sleep(random_sec)
-            url2 = "/html/body/div/div[3]/div/div/div[5]/form/div/table/tbody/tr[{}]/td[4]/div/a".format(i)
+            url2 = "/html/body/div/div[3]/div/div/div[5]/form/div/table/tbody/tr[{}]/td[4]/div/a".format(j)
             element = driver.find_element(By.XPATH, url2)
             element.click()
             title = driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div/div/div/form/div/div/div[2]/div[1]/div[1]")
             likes = driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div/div/div/form/div/div/div[2]/div[3]/button[1]/span[2]")
             singer = driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div/div/div/form/div/div/div[2]/div[1]/div[2]/a/span[1]")
             lyrics = driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div/div/div/div[2]/div[2]/div")
-            print ("{}번째 곡".format(i))
+            print ("{}번째 곡".format(i+j-1))
             print ("Title :",title.text)
             #print ("Likes :",likes.text)
             print ("Singer :",singer.text)
@@ -39,10 +39,10 @@ for i in range(20):
             singer_list.append(singer.text)
             lyrics_list.append(lyrics.text)
             driver.back()
-            i += 1
+            j += 1
         except:
             driver.back()
-            i += 1
+            j += 1
     driver.back()
     i += 1 
 
