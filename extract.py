@@ -6,15 +6,21 @@ import random
 
 import pandas as pd
 
-random_sec = random.uniform(1,2)
+random_sec = random.uniform(0, 1)
 
 title_list = []
 likes_list = []
 singer_list = []
 lyrics_list = []
 
+
 driver = webdriver.Chrome()
-for i in range(50):
+
+i = 0
+j = 0
+
+
+for i in range(100, 200):
     i = i * 50 + 1
     url = "https://www.melon.com/genre/song_list.htm?gnrCode=GN0100#params%5BgnrCode%5D=GN0100&params%5BdtlGnrCode%5D=&params%5BorderBy%5D=POP&params%5BsteadyYn%5D=N&po=pageObj&startIndex={}".format(i)
     driver.get(url)
