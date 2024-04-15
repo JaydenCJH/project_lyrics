@@ -5,3 +5,4 @@ MIDI: 작곡 관련 데이터
 RNN: 작사 RNN 모델  
 lyrics_data: 작사 관련 데이터  
 wc: 작사 데이터 워드 클라우드  
+lstm: 작사 LSTM 모델
